@@ -7,36 +7,23 @@ using System.Threading.Tasks;
 namespace B15_Ex02_Serge_310881082_Tal_200348316
 {
     public enum Piece {Blank,Black,White};
-    class Board
+    class BoardUI
     {
-        private Piece[,] board;
-       
-        private int m_boardSize;
 
-        public Board (int i_boardSize)
+        public static void DrawBoard(Piece[,] i_Board)
         {
-            m_boardSize = i_boardSize;
-
-        }
-
-
-        public void DrawBoard(Piece[,] i_board)
-        {
-            drawLetters();
-            drawLineSeparator();
-            drawCells(i_board);
-
+            int boardSize = i_Board.Length;
+            drawLetters(boardSize);
+            drawLineSeparator(boardSize);
+            drawCells(i_Board);
             System.Console.WriteLine();
-
-
-
-            System.Console.Read();
         }
 
-        private void drawLetters()
+
+        private static void drawLetters(int i_BoardSize)
         {
             System.Console.Write("  ");
-            for (int i = 0; i < m_boardSize; i++)
+            for (int i = 0; i < i_BoardSize; i++)
             {
                 char letter = (char)('A' + i);
                 System.Console.Write("  " + letter + " ");
@@ -44,23 +31,24 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             System.Console.WriteLine();
         }
 
-        private void drawLineSeparator()
+        private static void drawLineSeparator(int i_BoardSize)
         {
             System.Console.Write("  =");
-            for (int i = 0; i < m_boardSize; i++)
+            for (int i = 0; i < i_BoardSize; i++)
             {
                 System.Console.Write("====");
             }
             System.Console.WriteLine();
         }
 
-        private void drawCells(Piece[,] i_board)
+        private static void drawCells(Piece[,] i_board)
         {
+            int boardSize = i_board.Length;
             char piece;
-            for (int i = 0; i < m_boardSize; i++)
+            for (int i = 0; i < boardSize; i++)
             {
                 System.Console.Write((i+1) + " |");
-                for (int j = 0; j < m_boardSize; j++)
+                for (int j = 0; j < boardSize; j++)
                 {
                     piece = ' ';
                     switch (i_board[i, j])
@@ -79,7 +67,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     System.Console.Write(" "+piece+" |");
                 }
                 System.Console.WriteLine("");
-                drawLineSeparator();
+                drawLineSeparator(boardSize);
             }
             
         }
@@ -90,12 +78,4 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
     }
 
-    class Stam{
-        public static void Main()
-        {
-            Board board = new Board(6);
-            board.DrawBoard();
-        } 
-
-    }
 }
