@@ -20,8 +20,6 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         public Board(int i_Size)
         {
             m_GameMatrix = new ePiece[i_Size, i_Size];
-            m_WhitePoints = 2;
-            m_BlackPoints = 2;
             InitForNewGame();
         }
 

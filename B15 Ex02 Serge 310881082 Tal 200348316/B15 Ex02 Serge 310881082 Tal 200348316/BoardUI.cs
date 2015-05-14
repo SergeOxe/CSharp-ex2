@@ -1,4 +1,5 @@
-﻿
+﻿using System.Text;
+using System;
 namespace B15_Ex02_Serge_310881082_Tal_200348316
 {
     
@@ -17,31 +18,34 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         private static void drawLetters(int i_BoardSize)
         {
-            System.Console.Write("  ");
+            StringBuilder lineToPrint = new StringBuilder();
+            lineToPrint.Append("  ");
             for (int i = 0; i < i_BoardSize; i++)
             {
                 char letter = (char)('A' + i);
-                System.Console.Write("  " + letter + " ");
+                lineToPrint.Append("  " + letter + " ");
             }
-            System.Console.WriteLine();
+            System.Console.WriteLine(lineToPrint);
         }
 
         private static void drawLineSeparator(int i_BoardSize)
         {
-            System.Console.Write("  =");
+            StringBuilder lineToPrint = new StringBuilder();
+            lineToPrint.Append("  =");
             for (int i = 0; i < i_BoardSize; i++)
             {
-                System.Console.Write("====");
+                lineToPrint.Append("====");
             }
-            System.Console.WriteLine();
+            System.Console.WriteLine(lineToPrint);
         }
 
         private static void drawCells(Board i_Board)
         {
+            StringBuilder lineToPrint = new StringBuilder();
             char piece;
             for (int i = 0; i < i_Board.Size; i++)
             {
-                System.Console.Write((i+1) + " |");
+                lineToPrint.Append((i + 1) + " |");
                 for (int j = 0; j < i_Board.Size; j++)
                 {
                     piece = ' ';
@@ -58,17 +62,14 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     }
 
                     
-                    System.Console.Write(" "+piece+" |");
+                    lineToPrint.Append(" "+piece+" |");
                 }
-                System.Console.WriteLine("");
+                System.Console.WriteLine(lineToPrint);
                 drawLineSeparator(i_Board.Size);
+                lineToPrint.Length = 0;
+
             }
-            
         }
-       
-       
-
-
 
     }
 
