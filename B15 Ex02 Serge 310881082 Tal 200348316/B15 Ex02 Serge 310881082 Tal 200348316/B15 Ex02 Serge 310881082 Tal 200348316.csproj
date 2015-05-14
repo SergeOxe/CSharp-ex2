@@ -37,7 +37,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
+    <Compile Include="Move.cs" />
+    <Compile Include="MyStringUtils.cs" />
     <Compile Include="OtheloGame.cs" />
+    <Compile Include="Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
