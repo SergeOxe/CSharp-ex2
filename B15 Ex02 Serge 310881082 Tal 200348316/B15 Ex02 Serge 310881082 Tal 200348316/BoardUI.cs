@@ -7,6 +7,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         public static void DrawBoard(Board i_Board)
         {
+            Ex02.ConsoleUtils.Screen.Clear();
             drawLetters(i_Board.Size);
             drawLineSeparator(i_Board.Size);
             drawCells(i_Board);
