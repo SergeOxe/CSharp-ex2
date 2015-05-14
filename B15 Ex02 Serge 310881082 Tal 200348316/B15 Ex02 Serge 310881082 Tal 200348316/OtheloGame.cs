@@ -50,6 +50,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 switchTurn();
             }
 
+            BoardUI.DrawBoard(m_Board);
             printGameOverMsg();
             //bool anotherGame = getAnotherGame();
             // TODO: Refactor this function so if anotherGame == true we start again inside while loop
