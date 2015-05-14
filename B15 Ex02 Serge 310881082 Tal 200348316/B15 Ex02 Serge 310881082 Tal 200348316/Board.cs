@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace B15_Ex02_Serge_310881082_Tal_200348316
 {
     public enum Piece {Blank,Black,White};
