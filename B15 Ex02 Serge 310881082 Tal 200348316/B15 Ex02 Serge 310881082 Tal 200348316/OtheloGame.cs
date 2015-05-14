@@ -5,10 +5,8 @@ using System;
 namespace B15_Ex02_Serge_310881082_Tal_200348316
 {
 
-    class Board
-    {
-        
-    }
+    public enum ePiece : byte
+    { None, Black, White };
 
     public class OtheloGame
     {
@@ -40,7 +38,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 BoardUI.DrawBoard(m_Board);
                 printNextMoveMsg();
                 Move nextMove = getNextMove();
-                m_Board.ExcectureMove(nextMove);
+                m_Board.ExcecuteMove(nextMove);
                 switchTurn();
             }
 
@@ -50,6 +48,11 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         }
 
+        private Move getNextMove()
+        {
+            return m_CurrentPlayer.GetNextMove();
+        }
+
         private bool isGameOver()
         {
             return !m_Board.HasMove(Piece.Black) && !m_Board.HasMove(Piece.White);
@@ -57,10 +60,9 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         private void initGame(string i_FirstPlayerName, string i_SecondPlayerName, bool i_IsTwoPlayers, int i_BoardSize)
         {
-            m_WhitePlayer = new Player(i_FirstPlayerName, Piece.White);
-            m_BlackPlayer = new Player(i_SecondPlayerName, Piece.Black);
-            m_BlackPlayer.IsComputer = !i_IsTwoPlayers;
             m_Board = new Board(i_BoardSize);
+            m_WhitePlayer = new Player(m_Board, i_FirstPlayerName, Piece.White);
+            m_BlackPlayer = new Player(m_Board, i_SecondPlayerName, Piece.Black, !i_IsTwoPlayers);
             m_CurrentPlayer = m_WhitePlayer;
         }
 
