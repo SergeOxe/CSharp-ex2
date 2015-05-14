@@ -14,7 +14,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             {
                 int mod = i_Num % 100;
 
-                if (mod >= 11 || mod <= 13)
+                if (mod >= 11 && mod <= 13)
                 {
                     oridnaledNum = i_Num + "th";
                 }

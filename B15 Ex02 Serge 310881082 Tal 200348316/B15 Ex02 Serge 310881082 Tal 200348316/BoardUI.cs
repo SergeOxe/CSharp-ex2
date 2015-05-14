@@ -5,11 +5,10 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
     class BoardUI
     {
 
-        public static void DrawBoard(ePiece[,] i_Board)
+        public static void DrawBoard(Board i_Board)
         {
-            int boardSize = i_Board.Length;
-            drawLetters(boardSize);
-            drawLineSeparator(boardSize);
+            drawLetters(i_Board.Size);
+            drawLineSeparator(i_Board.Size);
             drawCells(i_Board);
             System.Console.WriteLine();
         }
@@ -36,17 +35,16 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             System.Console.WriteLine();
         }
 
-        private static void drawCells(ePiece[,] i_board)
+        private static void drawCells(Board i_Board)
         {
-            int boardSize = i_board.Length;
             char piece;
-            for (int i = 0; i < boardSize; i++)
+            for (int i = 0; i < i_Board.Size; i++)
             {
                 System.Console.Write((i+1) + " |");
-                for (int j = 0; j < boardSize; j++)
+                for (int j = 0; j < i_Board.Size; j++)
                 {
                     piece = ' ';
-                    switch (i_board[i, j])
+                    switch (i_Board.GetPiece(i, j))
                     {
 
                         case ePiece.Black:
@@ -62,7 +60,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     System.Console.Write(" "+piece+" |");
                 }
                 System.Console.WriteLine("");
-                drawLineSeparator(boardSize);
+                drawLineSeparator(i_Board.Size);
             }
             
         }
