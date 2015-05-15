@@ -60,7 +60,8 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     }
                     else
                     {
-                        nextMove = CoputerMoves.FindBestMove(possibleMoves, m_CurrentPlayer.Piece, m_Board, 5);
+                        int moveValue = 0;
+                        nextMove = CoputerMoves.FindBestMove(possibleMoves, m_CurrentPlayer.Piece, m_Board, 6);
                     }
 
                     if (nextMove == null)

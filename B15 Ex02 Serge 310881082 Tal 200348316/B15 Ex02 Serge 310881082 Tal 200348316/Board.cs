@@ -202,5 +202,10 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
             return isOpposite;
         }
+
+        public bool IsCorner(int i_X, int i_Y)
+        {
+            return (i_X == 0 || i_X == Size - 1) && (i_Y == 0 || i_Y == Size - 1);
+        }
     }
 }
