@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="BoardUI.cs" />
+    <Compile Include="GameLogic.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="MyStringUtils.cs" />
     <Compile Include="OtheloGame.cs" />
