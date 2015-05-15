@@ -12,8 +12,8 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             foreach (Move move in i_possibleMoves){
                 Board newBoard = new Board(i_board.Size); 
                 newBoard = i_board;
-                Move currentMove = recursiveMove(move, i_piece,newBoard,i_depth,player)
-                if (currentMove.value() > maxMove)
+                Move currentMove = recursiveMove(move, i_piece, newBoard, i_depth, player);
+                if (currentMove.Value > maxMove.Value)
                 {
                     maxMove = currentMove;
                 }
@@ -31,13 +31,10 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             }
             else
             {
-                
+                GameLogic.ExcecuteMove(i_board,i_move,i_piece);
+                return FindBestMove(GameLogic.GetPossibleMoves(i_board, GameLogic.GetOppositePiece(i_piece)), GameLogic.GetOppositePiece(i_piece), i_board, i_depth - 1, player * -1);
             }
         }
-
-
-
-
 
     }
 }

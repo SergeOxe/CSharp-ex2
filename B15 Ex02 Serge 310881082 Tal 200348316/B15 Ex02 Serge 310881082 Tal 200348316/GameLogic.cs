@@ -63,6 +63,20 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             }
         }
 
+        public static ePiece GetOppositePiece(ePiece i_Piece)
+        {
+            if (i_Piece == ePiece.Black)
+            {
+                return ePiece.White;
+            }
+            else if (i_Piece == ePiece.White)
+            {
+                return ePiece.Black;
+            }
+
+            return ePiece.None;
+        }
+
         private static void turnPieces(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_CurrentPlayerPiece)
         {
             while (i_Board[i_X, i_Y] != i_CurrentPlayerPiece)
