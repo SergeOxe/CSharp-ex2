@@ -6,13 +6,13 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 {
     class CoputerMoves
     {
-        public Move FindBestMove(List<Move> i_possibleMoves,ePiece i_piece, Board i_board, int i_depth, int player)
+        public Move FindBestMove(List<Move> i_PossibleMoves,ePiece i_Piece, Board i_Board, int i_Depth, int player)
         {
             Move maxMove = null;
-            foreach (Move move in i_possibleMoves){
-                Board newBoard = new Board(i_board.Size); 
-                newBoard = i_board;
-                Move currentMove = recursiveMove(move, i_piece, newBoard, i_depth, player);
+            foreach (Move move in i_PossibleMoves){
+                Board newBoard = new Board(i_Board.Size); 
+                newBoard = i_Board;
+                Move currentMove = recursiveMove(move, i_Piece, newBoard, i_Depth, player);
                 if (currentMove.Value > maxMove.Value)
                 {
                     maxMove = currentMove;
@@ -22,18 +22,19 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         }
 
 
-        private Move recursiveMove(Move i_move, ePiece i_piece, Board i_board, int i_depth, int player) 
+        private Move recursiveMove(Move i_Move, ePiece i_Piece, Board i_Board, int i_Depth, int player) 
         {
-
-            if (i_depth == 0)
+            Move valueToReturn;
+            if (i_Depth == 0)
             {
-                return i_move;
+                valueToReturn = i_Move;
             }
             else
             {
-                GameLogic.ExcecuteMove(i_board,i_move,i_piece);
-                return FindBestMove(GameLogic.GetPossibleMoves(i_board, GameLogic.GetOppositePiece(i_piece)), GameLogic.GetOppositePiece(i_piece), i_board, i_depth - 1, player * -1);
+                GameLogic.ExcecuteMove(i_Board,i_Move,i_Piece);
+                valueToReturn = FindBestMove(GameLogic.GetPossibleMoves(i_Board, GameLogic.GetOppositePiece(i_Piece)), GameLogic.GetOppositePiece(i_Piece), i_Board, i_Depth - 1, player * -1);
             }
+            return valueToReturn;
         }
 
     }
