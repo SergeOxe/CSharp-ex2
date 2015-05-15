@@ -69,7 +69,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                         break;
                     }
                     //Move nextMove = m_CurrentPlayer.GetMove(possibleMoves);
-                    excecuteMove(nextMove);
+                    GameLogic.ExcecuteMove(m_Board, nextMove, m_CurrentPlayer.Piece);
                     switchTurn();
                 }
 
@@ -244,71 +244,71 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             }
         }
 
-        private void excecuteMove(Move i_NextMove)
-        {
-            m_Board[i_NextMove.X, i_NextMove.Y] =  m_CurrentPlayer.Piece;
-            foreach (Direction direction in i_NextMove.Directions)
-            {
-                turnPieces(i_NextMove.X + direction.X, i_NextMove.Y + direction.Y, direction.X, direction.Y);
-            }
-        }
+        //private void excecuteMove(Move i_NextMove)
+        //{
+        //    m_Board[i_NextMove.X, i_NextMove.Y] =  m_CurrentPlayer.Piece;
+        //    foreach (Direction direction in i_NextMove.Directions)
+        //    {
+        //        turnPieces(i_NextMove.X + direction.X, i_NextMove.Y + direction.Y, direction.X, direction.Y);
+        //    }
+        //}
 
-        private void turnPieces(int i_X, int i_Y, int i_XDirection, int i_YDirection)
-        {
-            while (m_Board[i_X, i_Y] != m_CurrentPlayer.Piece)
-            {
-                m_Board[i_X, i_Y] = m_CurrentPlayer.Piece;
-                i_X += i_XDirection;
-                i_Y += i_YDirection;
-            }
+        //private void turnPieces(int i_X, int i_Y, int i_XDirection, int i_YDirection)
+        //{
+        //    while (m_Board[i_X, i_Y] != m_CurrentPlayer.Piece)
+        //    {
+        //        m_Board[i_X, i_Y] = m_CurrentPlayer.Piece;
+        //        i_X += i_XDirection;
+        //        i_Y += i_YDirection;
+        //    }
 
-        }
+        //}
 
-        private List<Move> getPossibleMoves(ePiece i_Piece)
-        {
-            List<Move> possibleMoves = new List<Move>();
+        //private List<Move> getPossibleMoves(ePiece i_Piece)
+        //{
+        //    List<Move> possibleMoves = new List<Move>();
 
-            for (int x = 0; x < m_Board.Size; x++)
-            {
-                for (int y = 0; y < m_Board.Size; y++)
-                {
-                    Move move = getPossibleMoveAtXY(x, y, i_Piece);
-                    if (move != null)
-                    {
-                        possibleMoves.Add(move);
-                    }
-                }
-            }
+        //    for (int x = 0; x < m_Board.Size; x++)
+        //    {
+        //        for (int y = 0; y < m_Board.Size; y++)
+        //        {
+        //            Move move = getPossibleMoveAtXY(x, y, i_Piece);
+        //            if (move != null)
+        //            {
+        //                possibleMoves.Add(move);
+        //            }
+        //        }
+        //    }
 
-            return possibleMoves;
-        }
+        //    return possibleMoves;
+        //}
 
-        private Move getPossibleMoveAtXY(int i_X, int i_Y, ePiece i_Piece)
-        {
-            Move move = null;
-            List<Direction> directions = new List<Direction>();
-            if (m_Board[i_X, i_Y] == ePiece.None)
-            {
-                for (int xDirection = -1; xDirection <= 1; xDirection++)
-                {
-                    for (int yDirection = -1; yDirection <= 1; yDirection++)
-                    {
-                        if (isOppositePiece(i_X + xDirection, i_Y + yDirection, i_Piece) &&
-                            endWithMyPiece(i_X + xDirection, i_Y + yDirection, xDirection, yDirection, i_Piece))
-                        {
-                            directions.Add(new Direction(xDirection, yDirection));
-                        }
-                    }
-                }
-            }
+        //private Move getPossibleMoveAtXY(int i_X, int i_Y, ePiece i_Piece)
+        //{
+        //    Move move = null;
+        //    List<Direction> directions = new List<Direction>();
+        //    if (m_Board[i_X, i_Y] == ePiece.None)
+        //    {
+        //        for (int xDirection = -1; xDirection <= 1; xDirection++)
+        //        {
+        //            for (int yDirection = -1; yDirection <= 1; yDirection++)
+        //            {
+        //                if (isOppositePiece(i_X + xDirection, i_Y + yDirection, i_Piece) &&
+        //                    endWithMyPiece(i_X + xDirection, i_Y + yDirection, xDirection, yDirection, i_Piece))
+        //                {
+        //                    directions.Add(new Direction(xDirection, yDirection));
+        //                }
+        //            }
+        //        }
+        //    }
 
-            if (directions.Count > 0)
-            {
-                move = new Move(i_X, i_Y, directions);
-            }
+        //    if (directions.Count > 0)
+        //    {
+        //        move = new Move(i_X, i_Y, directions);
+        //    }
 
-            return move;
-        }
+        //    return move;
+        //}
 
         private bool endWithMyPiece(int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece)
         {
@@ -353,34 +353,34 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             return isOpposite;
         }
 
-        private bool isGameOver()
-        {
-            bool isGameOver = true;
+        //private bool isGameOver()
+        //{
+        //    bool isGameOver = true;
 
-            for (int x = 0; x < m_Board.Size; x++)
-            {
-                for (int y = 0; y < m_Board.Size; y++)
-                {
-                    if (m_Board[x, y] != ePiece.None)
-                    {
-                        continue;
-                    }
+        //    for (int x = 0; x < m_Board.Size; x++)
+        //    {
+        //        for (int y = 0; y < m_Board.Size; y++)
+        //        {
+        //            if (m_Board[x, y] != ePiece.None)
+        //            {
+        //                continue;
+        //            }
 
-                    if (getPossibleMoveAtXY(x, y, ePiece.Black) != null)
-                    {
-                        isGameOver = false;
-                        break;
-                    }
-                    if (getPossibleMoveAtXY(x, y, ePiece.White) != null)
-                    {
-                        isGameOver = false;
-                        break;
-                    }
-                }
-            }
+        //            if (getPossibleMoveAtXY(x, y, ePiece.Black) != null)
+        //            {
+        //                isGameOver = false;
+        //                break;
+        //            }
+        //            if (getPossibleMoveAtXY(x, y, ePiece.White) != null)
+        //            {
+        //                isGameOver = false;
+        //                break;
+        //            }
+        //        }
+        //    }
 
-            return isGameOver;
-        }
+        //    return isGameOver;
+        //}
 
         private void initGame(string i_FirstPlayerName, string i_SecondPlayerName, bool i_IsTwoPlayers, int i_BoardSize)
         {
