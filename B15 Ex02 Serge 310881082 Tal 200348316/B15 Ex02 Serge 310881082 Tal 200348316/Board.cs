@@ -17,13 +17,19 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         public int WhitePoints { get { return m_WhitePoints; } }
         public int BlackPoints { get { return m_BlackPoints; } }
 
+        public ePiece this[int i_X, int i_Y]
+        {
+            get { return getPiece(i_X, i_Y); }
+            set { setPiece(i_X, i_Y, value); }
+        }
+
         public Board(int i_Size)
         {
             m_GameMatrix = new ePiece[i_Size, i_Size];
             InitForNewGame();
         }
 
-        public void SetPiece(int i_X, int i_Y, ePiece i_Piece)
+        private void setPiece(int i_X, int i_Y, ePiece i_Piece)
         {
             switch (i_Piece)
             {
@@ -47,7 +53,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             m_GameMatrix[i_X, i_Y] = i_Piece;
         }
 
-        public ePiece GetPiece(int i_X, int i_Y)
+        private ePiece getPiece(int i_X, int i_Y)
         {
             return m_GameMatrix[i_X, i_Y];
         }
@@ -67,10 +73,10 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             m_BlackPoints = 0;
 
             // Change pieces at the middle
-            SetPiece(middle - 1, middle - 1, ePiece.White);
-            SetPiece(middle, middle, ePiece.White);
-            SetPiece(middle - 1, middle, ePiece.Black);
-            SetPiece(middle, middle - 1, ePiece.Black);
+            setPiece(middle - 1, middle - 1, ePiece.White);
+            setPiece(middle, middle, ePiece.White);
+            setPiece(middle - 1, middle, ePiece.Black);
+            setPiece(middle, middle - 1, ePiece.Black);
         }
 
         public bool TryParse(string i_Pos, out int o_X, out int o_Y)

@@ -92,7 +92,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         private void excecuteMove(Move i_NextMove)
         {
-            m_Board.SetPiece(i_NextMove.X, i_NextMove.Y, m_CurrentPlayer.Piece);
+            m_Board[i_NextMove.X, i_NextMove.Y] =  m_CurrentPlayer.Piece;
             foreach (Direction direction in i_NextMove.Directions)
             {
                 turnPieces(i_NextMove.X + direction.X, i_NextMove.Y + direction.Y, direction.X, direction.Y);
@@ -101,9 +101,9 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         private void turnPieces(int i_X, int i_Y, int i_XDirection, int i_YDirection)
         {
-            while (m_Board.GetPiece(i_X, i_Y) != m_CurrentPlayer.Piece)
+            while (m_Board[i_X, i_Y] != m_CurrentPlayer.Piece)
             {
-                m_Board.SetPiece(i_X, i_Y, m_CurrentPlayer.Piece);
+                m_Board[i_X, i_Y] = m_CurrentPlayer.Piece;
                 i_X += i_XDirection;
                 i_Y += i_YDirection;
             }
@@ -133,7 +133,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         {
             Move move = null;
             List<Direction> directions = new List<Direction>();
-            if (m_Board.GetPiece(i_X, i_Y) == ePiece.None)
+            if (m_Board[i_X, i_Y] == ePiece.None)
             {
                 for (int xDirection = -1; xDirection <= 1; xDirection++)
                 {
@@ -162,11 +162,11 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
             while (m_Board.IsInBounds(i_X, i_Y))
             {
-                if (m_Board.GetPiece(i_X, i_Y) == ePiece.None)
+                if (m_Board[i_X, i_Y] == ePiece.None)
                 {
                     break;
                 }
-                if(m_Board.GetPiece(i_X, i_Y) == i_Piece)
+                if(m_Board[i_X, i_Y] == i_Piece)
                 {
                     hasEncounteredMyPiece = true;
                     break;
@@ -187,11 +187,11 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             {
                 isOpposite = false;
             }
-            else if (m_Board.GetPiece(i_X, i_Y) == ePiece.None)
+            else if (m_Board[i_X, i_Y] == ePiece.None)
             {
                 isOpposite = false;
             }
-            else if (m_Board.GetPiece(i_X, i_Y) == i_Piece)
+            else if (m_Board[i_X, i_Y] == i_Piece)
             {
                 isOpposite = false;
             }
@@ -207,7 +207,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             {
                 for (int y = 0; y < m_Board.Size; y++)
                 {
-                    if (m_Board.GetPiece(x, y) != ePiece.None)
+                    if (m_Board[x, y] != ePiece.None)
                     {
                         continue;
                     }

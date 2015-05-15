@@ -49,7 +49,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 for (int j = 0; j < i_Board.Size; j++)
                 {
                     piece = ' ';
-                    switch (i_Board.GetPiece(i, j))
+                    switch (i_Board[i, j])
                     {
 
                         case ePiece.Black:
