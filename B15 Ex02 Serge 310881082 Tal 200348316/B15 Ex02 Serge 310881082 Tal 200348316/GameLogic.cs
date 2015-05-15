@@ -102,7 +102,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             return isOpposite;
         }
 
-        private static bool endWithMyPiece(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece)
+        private static bool endWithMyPiece(Board i_Board, int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece, ref int o_Value)
         {
             bool hasEncounteredMyPiece = false;
 
@@ -120,6 +120,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
                 i_X += i_XDirection;
                 i_Y += i_YDirection;
+                o_Value++;
             }
 
             return hasEncounteredMyPiece;
