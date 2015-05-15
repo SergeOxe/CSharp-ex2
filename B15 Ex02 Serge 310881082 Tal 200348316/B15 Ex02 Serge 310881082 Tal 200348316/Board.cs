@@ -28,6 +28,22 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             m_GameMatrix = new ePiece[i_Size, i_Size];
         }
 
+        public Board GetCopy()
+        {
+            Board copyBoard = new Board(Size);
+            copyBoard.m_BlackPoints = BlackPoints;
+            copyBoard.m_WhitePoints = WhitePoints;
+            for (int x = 0; x < Size; x++)
+            {
+                for (int y = 0; y < Size; y++)
+                {
+                    copyBoard.m_GameMatrix[x, y] = m_GameMatrix[x, y];
+                }
+            }
+
+            return copyBoard;
+        }
+
         private void setPiece(int i_X, int i_Y, ePiece i_Piece)
         {
             switch (i_Piece)
