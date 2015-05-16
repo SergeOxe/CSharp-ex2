@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace B15_Ex02_Serge_310881082_Tal_200348316
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
-    class GameLogic
+    internal class GameLogic
     {
         public static bool IsGameOver(Board i_Board)
         {
@@ -24,6 +22,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                         isGameOver = false;
                         break;
                     }
+
                     if (getPossibleMoveAtPos(i_Board, x, y, ePiece.White) != null)
                     {
                         isGameOver = false;
@@ -85,7 +84,6 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 i_X += i_XDirection;
                 i_Y += i_YDirection;
             }
-
         }
 
         private static Move getPossibleMoveAtPos(Board i_Board, int i_X, int i_Y, ePiece i_Piece)
@@ -148,6 +146,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 {
                     break;
                 }
+
                 if (i_Board[i_X, i_Y] == i_Piece)
                 {
                     hasEncounteredMyPiece = true;

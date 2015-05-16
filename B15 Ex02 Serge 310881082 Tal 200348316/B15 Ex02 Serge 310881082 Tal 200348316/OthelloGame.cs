@@ -1,17 +1,17 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace B15_Ex02_Serge_310881082_Tal_200348316
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
-
-    enum ePiece : byte
-    { None, Black, White };
+    internal enum ePiece : byte
+    {
+        None,
+        Black, 
+        White
+    }
 
     public class OthelloGame
     {
-
         private Board m_Board;
         private Player m_WhitePlayer;
         private Player m_BlackPlayer;
@@ -21,6 +21,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         {
             bool isSignledQuit = false;
             string secondPlayerName = "John from Microsoft";
+
             // Get game settings from player
             printWelcomeMsg();
             string firstPlayerName = getPlayerName(1);
@@ -44,7 +45,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 {
                     Move nextMove = null;
 
-                    BoardUI.DrawBoard(m_Board);
+                    BoardDrawer.DrawBoard(m_Board);
                     List<Move> possibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer.Piece);
                     if (possibleMoves.Count == 0)
                     {
@@ -53,6 +54,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                         Console.ReadLine();
                         continue;
                     }
+
                     printNextMoveMsg();
                     if (m_CurrentPlayer.IsHuman)
                     {
@@ -60,8 +62,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     }
                     else
                     {
-                        int moveValue = 0;
-                        nextMove = CoputerMoves.FindBestMove(possibleMoves, m_CurrentPlayer.Piece, m_Board, 6);
+                        nextMove = GameAI.FindBestMove(possibleMoves, m_CurrentPlayer.Piece, m_Board, 6);
                     }
 
                     if (nextMove == null)
@@ -69,58 +70,20 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                         isSignledQuit = true;
                         break;
                     }
-                    //Move nextMove = m_CurrentPlayer.GetMove(possibleMoves);
+
                     GameLogic.ExcecuteMove(m_Board, nextMove, m_CurrentPlayer.Piece);
                     switchTurn();
                 }
 
                 if (!isSignledQuit)
                 {
-                    BoardUI.DrawBoard(m_Board);
+                    BoardDrawer.DrawBoard(m_Board);
                     printGameOverMsg();
                     isSignledQuit = !getAnotherGame();
                 }
             }
 
             printGoodbyeMsg();
-
-            //while (!GameLogic.IsGameOver(m_Board))
-            //{
-            //    Move nextMove = null;
-
-            //    BoardUI.DrawBoard(m_Board);
-            //    List<Move> possibleMoves = GameLogic.GetPossibleMoves(m_Board, m_CurrentPlayer.Piece);
-            //    if (possibleMoves.Count == 0)
-            //    {
-            //        printNoMovesMsg();
-            //        switchTurn();
-            //        Console.ReadLine();
-            //        continue;
-            //    }
-            //    printNextMoveMsg();
-            //    if (m_CurrentPlayer.IsHuman)
-            //    {
-            //        nextMove = getMoveFromPlayer(possibleMoves);
-            //    }
-            //    else
-            //    {
-            //        //nextMove = getMoveFromComputer(possibleMoves);
-            //    }
-
-            //    if (nextMove == null)
-            //    {
-            //        //printGoodbyeMsg();
-            //        break;
-            //    }
-            //    //Move nextMove = m_CurrentPlayer.GetMove(possibleMoves);
-            //    excecuteMove(nextMove);
-            //    switchTurn();
-            //}
-
-            //BoardUI.DrawBoard(m_Board);
-            //printGameOverMsg();
-            //bool anotherGame = getAnotherGame();
-
             Console.ReadKey();
         }
 
@@ -155,7 +118,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 {
                     isLegalInput = true;
                 }
-                else if (!m_Board.TryParse(moveStr, out x, out y))
+                else if (!m_Board.TryParseStringIndex(moveStr, out x, out y))
                 {
                     Console.WriteLine("The given input is invalid. Please use board index only. Try again.");
                 }
@@ -195,8 +158,12 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 @"The Game has ended!
 {0} you have {1} points.
 {2} you have {3} points.
-{4}", m_WhitePlayer.Name, m_Board.WhitePoints, m_BlackPlayer.Name, m_Board.BlackPoints, getWinnerMsg());
-
+{4}", 
+    m_WhitePlayer.Name, 
+    m_Board.WhitePoints, 
+    m_BlackPlayer.Name, 
+    m_Board.BlackPoints, 
+    getWinnerMsg());
         }
 
         private string getWinnerMsg()
@@ -210,7 +177,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             }
             else
             {
-                winnerMsg = string.Format("{0} you have won! Well done!", (diffPoints < 0)? m_BlackPlayer.Name: m_WhitePlayer.Name);
+                winnerMsg = string.Format("{0} you have won! Well done!", (diffPoints < 0) ? m_BlackPlayer.Name : m_WhitePlayer.Name);
             }
 
             return winnerMsg;
@@ -218,13 +185,15 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
 
         private void printNoMovesMsg()
         {
-            Console.WriteLine("Sorry {0}, you have no moves to make. Your turn is skipped.{1}Press Enter to continue.",
-                m_CurrentPlayer.Name, Environment.NewLine);
+            Console.WriteLine(
+                "Sorry {0}, you have no moves to make. Your turn is skipped.{1}Press Enter to continue.",
+                m_CurrentPlayer.Name, 
+                Environment.NewLine);
         }
 
         private void printNextMoveMsg()
         {
-            Console.Write("{0}, you play as {1}, please enter your move (such as E3): ", m_CurrentPlayer.Name, m_CurrentPlayer.Piece == ePiece.Black? 'X': 'O');
+            Console.Write("{0}, you play as {1}, please enter your move (such as E3): ", m_CurrentPlayer.Name, m_CurrentPlayer.Piece == ePiece.Black ? 'X' : 'O');
         }
 
         private void printWelcomeMsg()
@@ -244,144 +213,6 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                 m_CurrentPlayer = m_WhitePlayer;
             }
         }
-
-        //private void excecuteMove(Move i_NextMove)
-        //{
-        //    m_Board[i_NextMove.X, i_NextMove.Y] =  m_CurrentPlayer.Piece;
-        //    foreach (Direction direction in i_NextMove.Directions)
-        //    {
-        //        turnPieces(i_NextMove.X + direction.X, i_NextMove.Y + direction.Y, direction.X, direction.Y);
-        //    }
-        //}
-
-        //private void turnPieces(int i_X, int i_Y, int i_XDirection, int i_YDirection)
-        //{
-        //    while (m_Board[i_X, i_Y] != m_CurrentPlayer.Piece)
-        //    {
-        //        m_Board[i_X, i_Y] = m_CurrentPlayer.Piece;
-        //        i_X += i_XDirection;
-        //        i_Y += i_YDirection;
-        //    }
-
-        //}
-
-        //private List<Move> getPossibleMoves(ePiece i_Piece)
-        //{
-        //    List<Move> possibleMoves = new List<Move>();
-
-        //    for (int x = 0; x < m_Board.Size; x++)
-        //    {
-        //        for (int y = 0; y < m_Board.Size; y++)
-        //        {
-        //            Move move = getPossibleMoveAtXY(x, y, i_Piece);
-        //            if (move != null)
-        //            {
-        //                possibleMoves.Add(move);
-        //            }
-        //        }
-        //    }
-
-        //    return possibleMoves;
-        //}
-
-        //private Move getPossibleMoveAtXY(int i_X, int i_Y, ePiece i_Piece)
-        //{
-        //    Move move = null;
-        //    List<Direction> directions = new List<Direction>();
-        //    if (m_Board[i_X, i_Y] == ePiece.None)
-        //    {
-        //        for (int xDirection = -1; xDirection <= 1; xDirection++)
-        //        {
-        //            for (int yDirection = -1; yDirection <= 1; yDirection++)
-        //            {
-        //                if (isOppositePiece(i_X + xDirection, i_Y + yDirection, i_Piece) &&
-        //                    endWithMyPiece(i_X + xDirection, i_Y + yDirection, xDirection, yDirection, i_Piece))
-        //                {
-        //                    directions.Add(new Direction(xDirection, yDirection));
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    if (directions.Count > 0)
-        //    {
-        //        move = new Move(i_X, i_Y, directions);
-        //    }
-
-        //    return move;
-        //}
-
-        private bool endWithMyPiece(int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_Piece)
-        {
-            bool hasEncounteredMyPiece = false;
-
-            while (m_Board.IsInBounds(i_X, i_Y))
-            {
-                if (m_Board[i_X, i_Y] == ePiece.None)
-                {
-                    break;
-                }
-                if(m_Board[i_X, i_Y] == i_Piece)
-                {
-                    hasEncounteredMyPiece = true;
-                    break;
-                }
-
-                i_X += i_XDirection;
-                i_Y += i_YDirection;
-            }
-
-            return hasEncounteredMyPiece;
-        }
-
-        private bool isOppositePiece(int i_X, int i_Y, ePiece i_Piece)
-        {
-            bool isOpposite = true;
-
-            if (!m_Board.IsInBounds(i_X, i_Y))
-            {
-                isOpposite = false;
-            }
-            else if (m_Board[i_X, i_Y] == ePiece.None)
-            {
-                isOpposite = false;
-            }
-            else if (m_Board[i_X, i_Y] == i_Piece)
-            {
-                isOpposite = false;
-            }
-
-            return isOpposite;
-        }
-
-        //private bool isGameOver()
-        //{
-        //    bool isGameOver = true;
-
-        //    for (int x = 0; x < m_Board.Size; x++)
-        //    {
-        //        for (int y = 0; y < m_Board.Size; y++)
-        //        {
-        //            if (m_Board[x, y] != ePiece.None)
-        //            {
-        //                continue;
-        //            }
-
-        //            if (getPossibleMoveAtXY(x, y, ePiece.Black) != null)
-        //            {
-        //                isGameOver = false;
-        //                break;
-        //            }
-        //            if (getPossibleMoveAtXY(x, y, ePiece.White) != null)
-        //            {
-        //                isGameOver = false;
-        //                break;
-        //            }
-        //        }
-        //    }
-
-        //    return isGameOver;
-        //}
 
         private void initGame(string i_FirstPlayerName, string i_SecondPlayerName, bool i_IsTwoPlayers, int i_BoardSize)
         {

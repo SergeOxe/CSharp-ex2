@@ -33,16 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="BoardUI.cs" />
-    <Compile Include="CoputerMoves.cs" />
+    <Compile Include="BoardDrawer.cs" />
+    <Compile Include="GameAI.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="MyStringUtils.cs" />
-    <Compile Include="OtheloGame.cs" />
+    <Compile Include="OthelloGame.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

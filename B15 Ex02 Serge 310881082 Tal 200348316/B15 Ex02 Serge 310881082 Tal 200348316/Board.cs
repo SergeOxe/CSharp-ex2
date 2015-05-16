@@ -1,9 +1,6 @@
-﻿
-
-namespace B15_Ex02_Serge_310881082_Tal_200348316
-{
-    
-    class Board
+﻿namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
+{   
+    internal class Board
     {
         private ePiece[,] m_GameMatrix;
         private int m_WhitePoints;
@@ -14,13 +11,33 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             get { return m_GameMatrix.GetLength(0); }
         }
 
-        public int WhitePoints { get { return m_WhitePoints; } }
-        public int BlackPoints { get { return m_BlackPoints; } }
+        public int WhitePoints
+        {
+            get
+            {
+                return m_WhitePoints;
+            }
+        }
+
+        public int BlackPoints
+        {
+            get
+            {
+                return m_BlackPoints;
+            }
+        }
 
         public ePiece this[int i_X, int i_Y]
         {
-            get { return getPiece(i_X, i_Y); }
-            set { setPiece(i_X, i_Y, value); }
+            get
+            {
+                return getPiece(i_X, i_Y);
+            }
+
+            set
+            {
+                setPiece(i_X, i_Y, value);
+            }
         }
 
         public Board(int i_Size)
@@ -65,6 +82,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     m_WhitePoints++;
                     break;
             }
+
             m_GameMatrix[i_X, i_Y] = i_Piece;
         }
 
@@ -94,7 +112,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             setPiece(middle, middle - 1, ePiece.Black);
         }
 
-        public bool TryParse(string i_Pos, out int o_X, out int o_Y)
+        public bool TryParseStringIndex(string i_Pos, out int o_X, out int o_Y)
         {
             bool isParsed = false;
             o_X = -1;
@@ -121,86 +139,9 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             return upperCaseLetter - 'A';
         }
 
-        //public void ExecuteMove(Move i_Move, ePiece i_PlayerColor)
-        //{
-        //    m_GameMatrix[i_Move.X, i_Move.Y] = i_PlayerColor;
-
-        //    turnPieces(i_Move.X, i_Move.Y, -1, -1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, -1, 0, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, -1, 1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, 0, 1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, 1, 1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, 0, 1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, -1, 1, i_PlayerColor);
-        //    turnPieces(i_Move.X, i_Move.Y, 0, -1, i_PlayerColor);
-        //}
-
-        //private void turnPieces(int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_PlayerColor)
-        //{
-        //    i_X += i_XDirection;
-        //    i_Y += i_YDirection;
-        //    if (isOppositeColor(i_X, i_Y, i_PlayerColor) &&
-        //        endWithMyColor(i_X + i_XDirection, i_Y + i_YDirection, i_XDirection, i_YDirection, i_PlayerColor))
-        //    {
-        //        do
-        //        {
-        //            m_GameMatrix[i_X, i_Y] = i_PlayerColor;
-        //            i_X += i_XDirection;
-        //            i_Y += i_YDirection;
-        //        } while (isOppositeColor(i_X, i_Y, i_PlayerColor));
-        //    }
-        //}
-
-        //private bool endWithMyColor(int i_X, int i_Y, int i_XDirection, int i_YDirection, ePiece i_PlayerColor)
-        //{
-        //    bool hasEncounteredMyColor = false;
-
-        //    do
-        //    {
-        //        if (isOppositeColor(i_X, i_Y, i_PlayerColor))
-        //        {
-        //            i_X += i_XDirection;
-        //            i_Y += i_YDirection;
-        //        }
-        //        else if (isEmpty(i_X, i_Y))
-        //        {
-        //            break;
-        //        }
-        //        else
-        //        {
-        //            hasEncounteredMyColor = true;
-        //            break;
-        //        }
-                
-        //    } while (isInBounds(i_X, i_Y));
-
-        //    return hasEncounteredMyColor;
-        //}
-
-        private bool isEmpty(int i_X, int i_Y)
-        {
-            return m_GameMatrix[i_X, i_Y] == ePiece.None;
-        }
-
         public bool IsInBounds(int i_X, int i_Y)
         {
             return i_X >= 0 && i_Y >= 0 && i_X < Size && i_Y < Size;
-        }
-
-        private bool isOppositeColor(int i_X, int i_Y, ePiece i_PlayerColor)
-        {
-            bool isOpposite = true;
-
-            if (m_GameMatrix[i_X, i_Y] == ePiece.None)
-            {
-                isOpposite = false;
-            }
-            else if (m_GameMatrix[i_X, i_Y] == i_PlayerColor)
-            {
-                isOpposite = false;
-            }
-
-            return isOpposite;
         }
 
         public bool IsCorner(int i_X, int i_Y)

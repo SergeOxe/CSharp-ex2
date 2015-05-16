@@ -1,21 +1,38 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace B15_Ex02_Serge_310881082_Tal_200348316
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
-    class Player
+    internal class Player
     {
         private readonly string r_Name;
         private readonly ePiece r_Piece;
         private readonly bool r_IsHuman;
         private Board m_Board;
 
-        public ePiece Piece { get { return r_Piece;} }
-        public string Name { get { return r_Name; } }
-        public bool IsHuman { get { return r_IsHuman;} }
+        public ePiece Piece
+        {
+            get
+            {
+                return r_Piece;
+            }
+        }
 
+        public string Name
+        {
+            get
+            {
+                return r_Name;
+            }
+        }
+
+        public bool IsHuman
+        {
+            get
+            {
+                return r_IsHuman;
+            }
+        }
 
         public Player(Board i_Board, string i_Name, ePiece i_Piece, bool i_IsHuman)
         {
@@ -40,7 +57,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             while (!hasLegalMove)
             {
                 string moveStr = Console.ReadLine();
-                if (string.IsNullOrEmpty(moveStr) || !m_Board.TryParse(moveStr, out x, out y))
+                if (string.IsNullOrEmpty(moveStr) || !m_Board.TryParseStringIndex(moveStr, out x, out y))
                 {
                     Console.WriteLine("The given input is invalid. Try again.");
                 }

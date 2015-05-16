@@ -5,7 +5,6 @@ C:\Users\User\Documents\Visual Studio 2013\Projects\CSharp-ex2\B15 Ex02 Serge 31
 C:\Users\User\Documents\Visual Studio 2013\Projects\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\bin\Debug\B15 Ex02 Serge 310881082 Tal 200348316.pdb
 C:\Users\User\Documents\Visual Studio 2013\Projects\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\obj\Debug\B15 Ex02 Serge 310881082 Tal 200348316.exe
 C:\Users\User\Documents\Visual Studio 2013\Projects\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\obj\Debug\B15 Ex02 Serge 310881082 Tal 200348316.pdb
-C:\Users\kashi\Documents\GitHub\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\bin\Debug\B15 Ex02 Serge 310881082 Tal 200348316.exe.config
 C:\Users\kashi\Documents\GitHub\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\obj\Debug\B15 Ex02 Serge 310881082 Tal 200348316.csprojResolveAssemblyReference.cache
 C:\Users\kashi\Documents\GitHub\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\bin\Debug\B15 Ex02 Serge 310881082 Tal 200348316.exe
 C:\Users\kashi\Documents\GitHub\CSharp-ex2\B15 Ex02 Serge 310881082 Tal 200348316\B15 Ex02 Serge 310881082 Tal 200348316\bin\Debug\B15 Ex02 Serge 310881082 Tal 200348316.pdb

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace B15_Ex02_Serge_310881082_Tal_200348316
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
-    class CoputerMoves
+    internal class GameAI
     {
         public static Move FindBestMove(List<Move> i_PossibleMoves, ePiece i_Piece, Board i_Board, int i_Depth)
         {
@@ -22,7 +20,6 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             
             return bestMove;
         }
-
 
         private static int recursiveMove(Move i_Move, ePiece i_Piece, Board i_Board, int i_Depth) 
         {

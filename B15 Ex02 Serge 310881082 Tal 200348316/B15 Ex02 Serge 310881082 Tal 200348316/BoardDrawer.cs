@@ -1,11 +1,9 @@
 ﻿using System.Text;
-using System;
-namespace B15_Ex02_Serge_310881082_Tal_200348316
-{
-    
-    class BoardUI
-    {
 
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
+{
+    internal class BoardDrawer
+    {
         public static void DrawBoard(Board i_Board)
         {
             Ex02.ConsoleUtils.Screen.Clear();
@@ -15,27 +13,30 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
             System.Console.WriteLine();
         }
 
-
         private static void drawLetters(int i_BoardSize)
         {
             StringBuilder lineToPrint = new StringBuilder();
+
             lineToPrint.Append("  ");
             for (int i = 0; i < i_BoardSize; i++)
             {
                 char letter = (char)('A' + i);
                 lineToPrint.Append("  " + letter + " ");
             }
+
             System.Console.WriteLine(lineToPrint);
         }
 
         private static void drawLineSeparator(int i_BoardSize)
         {
             StringBuilder lineToPrint = new StringBuilder();
+
             lineToPrint.Append("  =");
             for (int i = 0; i < i_BoardSize; i++)
             {
                 lineToPrint.Append("====");
             }
+
             System.Console.WriteLine(lineToPrint);
         }
 
@@ -43,6 +44,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         {
             StringBuilder lineToPrint = new StringBuilder();
             char piece;
+
             for (int i = 0; i < i_Board.Size; i++)
             {
                 lineToPrint.Append((i + 1) + " |");
@@ -51,7 +53,6 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                     piece = ' ';
                     switch (i_Board[i, j])
                     {
-
                         case ePiece.Black:
                             piece = 'X';
                             break;
@@ -61,16 +62,13 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
                             break;
                     }
 
-                    
-                    lineToPrint.Append(" "+piece+" |");
+                    lineToPrint.Append(string.Format(" {0} |", piece));
                 }
+
                 System.Console.WriteLine(lineToPrint);
                 drawLineSeparator(i_Board.Size);
                 lineToPrint.Length = 0;
-
             }
         }
-
     }
-
 }

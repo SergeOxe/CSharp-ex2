@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace B15_Ex02_Serge_310881082_Tal_200348316
+namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
-
-    struct Direction
+    internal struct Direction
     {
         private int m_XDirection;
         private int m_YDirection;
@@ -27,16 +24,37 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316
         }
     }
 
-    class Move
+    internal class Move
     {
         private int m_X;
         private int m_Y;
         private int m_Value;
         private List<Direction> m_Directions;
 
-        public int X { get { return m_X; } }
-        public int Y { get { return m_Y; } }
-        public List<Direction> Directions { get { return m_Directions;} }
+        public int X
+        {
+            get
+            {
+                return m_X;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return m_Y;
+            }
+        }
+
+        public List<Direction> Directions
+        {
+            get
+            {
+                return m_Directions;
+            }
+        }
+
         public int Value
         {
             get
