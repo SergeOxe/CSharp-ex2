@@ -217,8 +217,8 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
         private void initGame(string i_FirstPlayerName, string i_SecondPlayerName, bool i_IsTwoPlayers, int i_BoardSize)
         {
             m_Board = new Board(i_BoardSize);
-            m_WhitePlayer = new Player(m_Board, i_FirstPlayerName, ePiece.White);
-            m_BlackPlayer = new Player(m_Board, i_SecondPlayerName, ePiece.Black, i_IsTwoPlayers);
+            m_WhitePlayer = new Player(i_FirstPlayerName, ePiece.White);
+            m_BlackPlayer = new Player(i_SecondPlayerName, ePiece.Black, i_IsTwoPlayers);
             m_CurrentPlayer = m_WhitePlayer;
         }
 

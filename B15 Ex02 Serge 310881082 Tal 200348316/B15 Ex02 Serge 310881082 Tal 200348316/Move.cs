@@ -4,38 +4,38 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
 {
     internal struct Direction
     {
-        private int m_XDirection;
-        private int m_YDirection;
+        private readonly int r_XDirection;
+        private readonly int r_YDirection;
 
         public int X
         {
-            get { return m_XDirection; }
+            get { return r_XDirection; }
         }
 
         public int Y
         {
-            get { return m_YDirection; }
+            get { return r_YDirection; }
         }
 
         public Direction(int i_X, int i_Y)
         {
-            m_XDirection = i_X;
-            m_YDirection = i_Y;
+            r_XDirection = i_X;
+            r_YDirection = i_Y;
         }
     }
 
     internal class Move
     {
-        private int m_X;
-        private int m_Y;
-        private int m_Value;
-        private List<Direction> m_Directions;
+        private readonly int r_X;
+        private readonly int r_Y;
+        private readonly int r_Value;
+        private readonly List<Direction> r_Directions;
 
         public int X
         {
             get
             {
-                return m_X;
+                return r_X;
             }
         }
 
@@ -43,7 +43,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
         {
             get
             {
-                return m_Y;
+                return r_Y;
             }
         }
 
@@ -51,7 +51,7 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
         {
             get
             {
-                return m_Directions;
+                return r_Directions;
             }
         }
 
@@ -59,16 +59,16 @@ namespace B15_Ex02_Serge_310881082_Tal_200348316.Othello
         {
             get
             {
-                return m_Value;
+                return r_Value;
             }
         }
 
         public Move(int i_X, int i_Y, List<Direction> i_Directions, int i_Value)
         {
-            m_X = i_X;
-            m_Y = i_Y;
-            m_Directions = i_Directions;
-            m_Value = i_Value;
+            r_X = i_X;
+            r_Y = i_Y;
+            r_Directions = i_Directions;
+            r_Value = i_Value;
         }
     }
 }
